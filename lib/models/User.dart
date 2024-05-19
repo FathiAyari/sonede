@@ -4,7 +4,6 @@ class Cuser {
   String lastName;
   String email;
   String role;
-  String country;
   String phoneNumber;
   int status;
   DateTime? createdAt;
@@ -13,11 +12,10 @@ class Cuser {
     required this.uid,
     required this.name,
     required this.status,
-     this.createdAt,
+    this.createdAt,
     required this.lastName,
     required this.email,
     required this.role,
-    required this.country,
     required this.phoneNumber,
   });
 
@@ -29,7 +27,6 @@ class Cuser {
       'lastName': lastName,
       'email': email,
       'role': role,
-      'country': country,
       'createdAt': DateTime.now(),
       'phoneNumber': phoneNumber,
     };
@@ -44,7 +41,6 @@ class Cuser {
       lastName: json['lastName'],
       email: json['email'],
       role: json['role'],
-      country: json['country'],
       phoneNumber: json['phoneNumber'],
     );
   }

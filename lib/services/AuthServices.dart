@@ -25,20 +25,19 @@ class AuthServices {
       required String password,
       required String name,
       required String lastName,
-      required String country,
       required String phoneNumber}) async {
     try {
       await auth.createUserWithEmailAndPassword(email: email, password: password);
 
       await saveUser(Cuser(
-          status: 1,
-          uid: user!.uid,
-          name: name,
-          email: email,
-          role: 'client',
-          lastName: lastName,
-          phoneNumber: phoneNumber,
-          country: country));
+        status: 1,
+        uid: user!.uid,
+        name: name,
+        email: email,
+        role: 'client',
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+      ));
 
       return true;
     } on FirebaseException catch (e) {
@@ -79,7 +78,6 @@ class AuthServices {
       'phoneNumber': user.phoneNumber,
       'role': user.role,
       'lastName': user.lastName,
-      'countryId': user.country,
     });
     print('saving values');
   }

@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:lottie/lottie.dart';
 import 'package:sonede/models/User.dart';
+import 'package:sonede/presentation/ressources/colors.dart';
 import 'package:sonede/presentation/ressources/routes/router.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -54,13 +54,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.cyan,
+        backgroundColor: AppColors.primary,
         body: Column(
           children: [
-            Expanded(
-              flex: 4,
-              child: Lottie.asset("assets/lotties/splash_screen.json", fit: BoxFit.contain),
-            ),
             const Expanded(
                 child: Center(
                     child: CircularProgressIndicator(

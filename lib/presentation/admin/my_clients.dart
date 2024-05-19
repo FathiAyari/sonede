@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sonede/models/Counter.dart';
 import 'package:sonede/models/User.dart';
+import 'package:sonede/presentation/admin/add_invoice.dart';
 import 'package:sonede/presentation/ressources/colors.dart';
 
 class MyClients extends StatefulWidget {
@@ -13,7 +16,6 @@ class MyClients extends StatefulWidget {
 }
 
 class _MyClientsState extends State<MyClients> {
-  String selectedOption = "country";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,26 +24,6 @@ class _MyClientsState extends State<MyClients> {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Column(
           children: [
-            RadioListTile(
-              title: Text("Trier par pays"),
-              value: 'country',
-              groupValue: selectedOption,
-              onChanged: (value) {
-                setState(() {
-                  selectedOption = value!;
-                });
-              },
-            ),
-            RadioListTile(
-              title: Text('Trier par date de création'),
-              value: 'date',
-              groupValue: selectedOption,
-              onChanged: (value) {
-                setState(() {
-                  selectedOption = value!;
-                });
-              },
-            ),
             Expanded(
               child: StreamBuilder(
                   stream: FirebaseFirestore.instance.collection('users').where("role", isEqualTo: "client").snapshots(),
@@ -51,16 +33,6 @@ class _MyClientsState extends State<MyClients> {
                       for (var data in snapshot.data!.docs.toList()) {
                         bc.add(Cuser.fromJson(data.data() as Map<String, dynamic>));
                       }
-                      if (selectedOption == "country") {
-                        bc.sort((a, b) {
-                          return a.name.toLowerCase().compareTo(b.name.toLowerCase());
-                        });
-                      } else {
-                        bc.sort((a, b) {
-                          return b.createdAt!.compareTo(a.createdAt!);
-                        });
-                      }
-
                       if (bc.isNotEmpty) {
                         return ListView.builder(
                             itemCount: bc.length,
@@ -89,39 +61,78 @@ class _MyClientsState extends State<MyClients> {
                                           style: TextStyle(color: Colors.white, fontSize: 20),
                                         ),
                                         Text(
-                                          "Pays :${bc[index].country}",
-                                          style: TextStyle(color: Colors.white, fontSize: 20),
-                                        ),
-                                        Text(
                                           "Téléphone :${bc[index].phoneNumber}",
                                           style: TextStyle(color: Colors.white, fontSize: 20),
                                         ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: ElevatedButton(
-                                                  onPressed: () {
-                                                    FirebaseFirestore.instance
-                                                        .collection("users")
-                                                        .doc(bc[index].uid)
-                                                        .update({"status": bc[index].status == 0 ? 1 : 0});
-                                                  },
-                                                  style: ElevatedButton.styleFrom(
-                                                    backgroundColor: bc[index].status == 0 ? Colors.green : Colors.red,
-                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                                                  ),
-                                                  child: bc[index].status == 0
-                                                      ? Text(
-                                                          "Activer",
-                                                          style: TextStyle(color: Colors.white),
-                                                        )
-                                                      : Text(
-                                                          "Désactiver",
-                                                          style: TextStyle(color: Colors.white),
-                                                        )),
-                                            ),
-                                          ],
-                                        )
+                                        Container(
+                                          child: ElevatedButton(
+                                              onPressed: () {
+                                                FirebaseFirestore.instance
+                                                    .collection("users")
+                                                    .doc(bc[index].uid)
+                                                    .update({"status": bc[index].status == 0 ? 1 : 0});
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: bc[index].status == 0 ? Colors.green : Colors.red,
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                                              ),
+                                              child: bc[index].status == 0
+                                                  ? Text(
+                                                      "Activer",
+                                                      style: TextStyle(color: Colors.white),
+                                                    )
+                                                  : Text(
+                                                      "Désactiver",
+                                                      style: TextStyle(color: Colors.white),
+                                                    )),
+                                          width: double.infinity,
+                                        ),
+                                        StreamBuilder(
+                                            stream: FirebaseFirestore.instance
+                                                .collection('users')
+                                                .doc(bc[index].uid)
+                                                .collection('counters')
+                                                .snapshots(),
+                                            builder: (context, snapshot) {
+                                              if (snapshot.hasData) {
+                                                List<Counter> counters = [];
+                                                for (var data in snapshot.data!.docs.toList()) {
+                                                  counters.add(Counter.fromJson(data.data() as Map<String, dynamic>));
+                                                }
+                                                if (bc.isNotEmpty) {
+                                                  return ExpansionTile(
+                                                    title: Text(
+                                                      'Les compteurs',
+                                                      style: TextStyle(color: Colors.white),
+                                                    ),
+                                                    leading: Icon(
+                                                      Icons.water_drop_outlined,
+                                                      color: Colors.white,
+                                                    ),
+                                                    children: counters
+                                                        .map((e) => ListTile(
+                                                              trailing: Icon(
+                                                                Icons.add,
+                                                                color: Colors.white,
+                                                              ),
+                                                              onTap: () {
+                                                                Get.to(AddInvoice(counterId: e.code));
+                                                              },
+                                                              title: Text(
+                                                                '${e.code}',
+                                                                style: TextStyle(color: Colors.white),
+                                                              ),
+                                                            ))
+                                                        .toList(),
+                                                  );
+                                                } else {
+                                                  return Text("");
+                                                }
+                                              }
+                                              return Center(
+                                                child: CircularProgressIndicator(),
+                                              );
+                                            })
                                       ],
                                     ),
                                   ),

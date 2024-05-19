@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sonede/models/snack_bar_types.dart';
@@ -20,9 +17,7 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   bool loading = false;
-  File? _image;
   String role = 'client';
-  Country? selectedCountry;
   final _formkey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -118,40 +113,6 @@ class _SignupScreenState extends State<SignupScreen> {
                           color: Colors.indigo,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: Constants.screenHeight * 0.001, horizontal: Constants.screenWidth * 0.07),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.primary.withOpacity(0.5),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10), // Adjust the value to change the border radius
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    showCountryPicker(
-                                      context: context,
-                                      showPhoneCode: true,
-                                      onSelect: (Country country) {
-                                        setState(() {
-                                          selectedCountry = country;
-                                        });
-                                      },
-                                    );
-                                  },
-                                  child: Text(
-                                    selectedCountry == null
-                                        ? "Selectionner le pays "
-                                        : selectedCountry!.displayName + selectedCountry!.flagEmoji,
-                                    style: TextStyle(color: Colors.white),
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
                       loading
                           ? CircularProgressIndicator()
                           : Container(
@@ -177,46 +138,35 @@ class _SignupScreenState extends State<SignupScreen> {
                                           ),
                                           onPressed: () async {
                                             if (_formkey.currentState!.validate()) {
-                                              if (selectedCountry != null) {
+                                              setState(() {
+                                                loading = true;
+                                              });
+                                              bool check = await AuthServices().signUp(
+                                                  email: emailcontroller.text,
+                                                  name: nameController.text,
+                                                  lastName: lastNameController.text,
+                                                  phoneNumber: phoneNumberController.text,
+                                                  password: passWordController.text);
+
+                                              if (check) {
                                                 setState(() {
-                                                  loading = true;
+                                                  loading = false;
                                                 });
-                                                bool check = await AuthServices().signUp(
-                                                    email: emailcontroller.text,
-                                                    name: nameController.text,
-                                                    lastName: lastNameController.text,
-                                                    phoneNumber: phoneNumberController.text,
-                                                    country: selectedCountry!.flagEmoji + selectedCountry!.displayName,
-                                                    password: passWordController.text);
+                                                AuthServices().getUserData().then((value) {
+                                                  AuthServices().saveUserLocally(value);
 
-                                                if (check) {
-                                                  setState(() {
-                                                    loading = false;
-                                                  });
-                                                  AuthServices().getUserData().then((value) {
-                                                    AuthServices().saveUserLocally(value);
-
-                                                    if (value.role == 'client') {
-                                                      Navigator.pushNamed(context, AppRouting.homeClient);
-                                                    } else if (value.role == 'admin') {
-                                                      Navigator.pushNamed(context, AppRouting.homeAdmin);
-                                                    }
-                                                  });
-                                                } else {
-                                                  setState(() {
-                                                    loading = false;
-                                                  });
-                                                  SnackBars(
-                                                          label: "Email deja existe",
-                                                          type: SnackBarsTypes.alert,
-                                                          onTap: () {},
-                                                          actionLabel: "Fermer",
-                                                          context: context)
-                                                      .showSnackBar();
-                                                }
+                                                  if (value.role == 'client') {
+                                                    Navigator.pushNamed(context, AppRouting.homeClient);
+                                                  } else if (value.role == 'admin') {
+                                                    Navigator.pushNamed(context, AppRouting.homeAdmin);
+                                                  }
+                                                });
                                               } else {
+                                                setState(() {
+                                                  loading = false;
+                                                });
                                                 SnackBars(
-                                                        label: "Pays obligatoire",
+                                                        label: "Email deja existe",
                                                         type: SnackBarsTypes.alert,
                                                         onTap: () {},
                                                         actionLabel: "Fermer",

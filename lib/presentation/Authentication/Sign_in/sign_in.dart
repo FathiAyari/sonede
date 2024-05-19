@@ -7,7 +7,6 @@ import 'package:lottie/lottie.dart';
 import 'package:sonede/models/snack_bar_types.dart';
 import 'package:sonede/presentation/components/input_field/input_field.dart';
 import 'package:sonede/presentation/components/snack_bar.dart';
-import 'package:sonede/presentation/on_boarding/on_boarding_controller.dart';
 import 'package:sonede/presentation/ressources/colors.dart';
 import 'package:sonede/presentation/ressources/dimensions/constants.dart';
 import 'package:sonede/presentation/ressources/routes/router.dart';
@@ -33,7 +32,6 @@ class _LoginScreenState extends State<SignInScreen> {
   final _formkey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  OnBoardingController controller = OnBoardingController();
 
   Future<bool> avoidReturnButton() async {
     showDialog(

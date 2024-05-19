@@ -19,12 +19,12 @@ int currentPage = 0;
 List<Content> contentList = [
   Content(
     img: 'assets/lotties/on1.json',
-    description: 'Êtes-vous fatigués de chercher un parasol disponible ? ',
-    title: 'Bienvenue chez Sunset View',
+    description: 'Êtes-vous fatigués de suivre vos facture de sonede ? ',
+    title: 'Bienvenue chez Sonede',
   ),
   Content(
     img: 'assets/lotties/on2.json',
-    description: "Nous vous proposons l'application mobile Sunset View pour faciliter la tâche.",
+    description: "Nous vous proposons l'application mobile Sonede pour faciliter la tâche.",
     title: '',
   ),
   Content(
