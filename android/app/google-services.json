@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "341444096496",
+    "project_id": "sonede-6eb9d",
+    "storage_bucket": "sonede-6eb9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341444096496:android:40fee430483a85935fed35",
+        "android_client_info": {
+          "package_name": "com.example.sonede"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwGxa3f358vpzlnFzY6xm6kpk0HU1Kd1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
