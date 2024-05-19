@@ -3,6 +3,7 @@ import 'package:sonede/presentation/Authentication/Sign_in/sign_in.dart';
 import 'package:sonede/presentation/Authentication/Sign_up/signup.dart';
 import 'package:sonede/presentation/Splash_screen/splashscreen.dart';
 import 'package:sonede/presentation/admin/home_admin.dart';
+import 'package:sonede/presentation/client/home_client.dart';
 import 'package:sonede/presentation/deleted_account/deleted_account.dart';
 import 'package:sonede/presentation/on_boarding/on_boarding_page.dart';
 
