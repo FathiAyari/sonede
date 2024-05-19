@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sonede/presentation/client/my_counters.dart';
 import 'package:sonede/presentation/client/my_invoices.dart';
 import 'package:sonede/presentation/client/my_notifications.dart';
 import 'package:sonede/presentation/client/my_reclamations.dart';
@@ -16,7 +17,7 @@ class HomeClient extends StatefulWidget {
 }
 
 class _HomeClientState extends State<HomeClient> {
-  List<Widget> pages = [MyInvoices(), MyReclamations(), MyNotifications(), MyProfile()];
+  List<Widget> pages = [MyInvoices(), MyReclamations(), MyCounters(), MyNotifications(), MyProfile()];
   List<BottomNavigationBarItem> items = [
     BottomNavigationBarItem(
         icon: Icon(
@@ -24,6 +25,7 @@ class _HomeClientState extends State<HomeClient> {
         ),
         label: "Factures"),
     BottomNavigationBarItem(icon: Icon(Icons.data_exploration_outlined), label: "Reclamations"),
+    BottomNavigationBarItem(icon: Icon(Icons.water_drop_outlined), label: "Compteurs"),
     BottomNavigationBarItem(icon: Icon(Icons.notifications_active), label: "Notifications"),
     BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile"),
   ];

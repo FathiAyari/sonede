@@ -116,7 +116,10 @@ class _MyClientsState extends State<MyClients> {
                                                                 color: Colors.white,
                                                               ),
                                                               onTap: () {
-                                                                Get.to(AddInvoice(counterId: e.code));
+                                                                Get.to(AddInvoice(
+                                                                  counterId: e.code,
+                                                                  userId: bc[index].uid,
+                                                                ));
                                                               },
                                                               title: Text(
                                                                 '${e.code}',
