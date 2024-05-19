@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:umbrella/presentation/ressources/dimensions/constants.dart';
-import 'package:umbrella/services/AuthServices.dart';
+import 'package:sonede/presentation/ressources/dimensions/constants.dart';
+import 'package:sonede/services/AuthServices.dart';
 
 class DeletedAccount extends StatelessWidget {
   const DeletedAccount({Key? key}) : super(key: key);

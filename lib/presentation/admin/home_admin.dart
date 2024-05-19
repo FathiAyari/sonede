@@ -2,10 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:umbrella/presentation/admin/my_clients.dart';
-import 'package:umbrella/presentation/client/beach.dart';
-import 'package:umbrella/presentation/client/profile.dart';
-import 'package:umbrella/presentation/ressources/colors.dart';
+import 'package:sonede/presentation/admin/my_clients.dart';
+import 'package:sonede/presentation/ressources/colors.dart';
 
 class HomeAdmin extends StatefulWidget {
   const HomeAdmin({Key? key}) : super(key: key);

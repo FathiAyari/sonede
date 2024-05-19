@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:umbrella/models/snack_bar_types.dart';
-import 'package:umbrella/presentation/ressources/colors.dart';
-import 'package:umbrella/presentation/ressources/dimensions/constants.dart';
+import 'package:sonede/models/snack_bar_types.dart';
+import 'package:sonede/presentation/ressources/colors.dart';
+import 'package:sonede/presentation/ressources/dimensions/constants.dart';
 
 class SnackBars {
   final BuildContext context;

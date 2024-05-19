@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:umbrella/presentation/ressources/colors.dart';
-import 'package:umbrella/presentation/ressources/dimensions/constants.dart';
+import 'package:sonede/presentation/ressources/colors.dart';
+import 'package:sonede/presentation/ressources/dimensions/constants.dart';
 
 class Content extends StatelessWidget {
   final String title;

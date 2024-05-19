@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:umbrella/presentation/ressources/colors.dart';
-import 'package:umbrella/presentation/ressources/dimensions/constants.dart';
+import 'package:sonede/presentation/ressources/colors.dart';
+import 'package:sonede/presentation/ressources/dimensions/constants.dart';
 
 class InputField extends StatefulWidget {
   final String label;

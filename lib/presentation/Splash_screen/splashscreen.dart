@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
-import 'package:umbrella/models/User.dart';
-import 'package:umbrella/presentation/ressources/routes/router.dart';
+import 'package:sonede/models/User.dart';
+import 'package:sonede/presentation/ressources/routes/router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

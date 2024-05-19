@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:umbrella/presentation/on_boarding/on_boarding_controller.dart';
-import 'package:umbrella/presentation/ressources/colors.dart';
-import 'package:umbrella/presentation/ressources/dimensions/constants.dart';
+import 'package:sonede/presentation/on_boarding/on_boarding_controller.dart';
+import 'package:sonede/presentation/ressources/colors.dart';
+import 'package:sonede/presentation/ressources/dimensions/constants.dart';
 
 import '../Authentication/Sign_in/sign_in.dart';
 import 'on_boarding_content.dart';

@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:umbrella/models/snack_bar_types.dart';
-import 'package:umbrella/presentation/components/input_field/input_field.dart';
-import 'package:umbrella/presentation/components/snack_bar.dart';
-import 'package:umbrella/presentation/ressources/colors.dart';
-import 'package:umbrella/presentation/ressources/dimensions/constants.dart';
-import 'package:umbrella/presentation/ressources/routes/router.dart';
-import 'package:umbrella/services/AuthServices.dart';
+import 'package:sonede/models/snack_bar_types.dart';
+import 'package:sonede/presentation/components/input_field/input_field.dart';
+import 'package:sonede/presentation/components/snack_bar.dart';
+import 'package:sonede/presentation/ressources/colors.dart';
+import 'package:sonede/presentation/ressources/dimensions/constants.dart';
+import 'package:sonede/presentation/ressources/routes/router.dart';
+import 'package:sonede/services/AuthServices.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
