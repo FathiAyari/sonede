@@ -22,7 +22,7 @@ class _MyNotificationsState extends State<MyNotifications> {
     return SafeArea(
       child: Scaffold(
         body: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection('notifications').snapshots(),
+            stream: FirebaseFirestore.instance.collection('notifications').where("userId", isEqualTo: user["uid"]).snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 List<Notifications> bc = [];

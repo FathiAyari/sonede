@@ -78,7 +78,7 @@ class _MyInvoicesState extends State<MyInvoices> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Bienvenue  : ${user['name'].toString().toUpperCase()}  ${user['lastName'].toString().toUpperCase()}",
+                        "${user['name'].toString().toUpperCase()}  ${user['lastName'].toString().toUpperCase()}",
                         style: TextStyle(color: Colors.white, fontSize: 20, fontStyle: FontStyle.italic),
                       ),
                       Spacer(),
