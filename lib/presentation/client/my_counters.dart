@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sonede/models/Counter.dart';
 import 'package:sonede/presentation/client/add_counter.dart';
+import 'package:sonede/presentation/client/add_reclamation.dart';
 import 'package:sonede/presentation/ressources/colors.dart';
 
 class MyCounters extends StatefulWidget {
@@ -54,9 +57,35 @@ class _MyCountersState extends State<MyCounters> {
                                   borderRadius: BorderRadius.circular(10), color: AppColors.primary.withOpacity(0.5)),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: ListTile(
-                                  title: Text("${bc[index].code}"),
-                                  subtitle: Text(" Creé le : ${bc[index].createdAt}"),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Slidable(
+                                    startActionPane: ActionPane(
+                                      // A motion is a widget used to control how the pane animates.
+                                      motion: const ScrollMotion(),
+
+                                      children: [
+                                        SlidableAction(
+                                          backgroundColor: Colors.blue,
+                                          foregroundColor: Colors.white,
+                                          icon: Icons.cancel,
+                                          onPressed: (BuildContext ctx) {},
+                                        ),
+                                        SlidableAction(
+                                          onPressed: (BuildContext ctx) {
+                                            Get.to(AddReclamation(counterId: bc[index].code));
+                                          },
+                                          backgroundColor: Colors.green,
+                                          foregroundColor: Colors.white,
+                                          icon: Icons.add,
+                                        ),
+                                      ],
+                                    ),
+                                    child: ListTile(
+                                      title: Text("${bc[index].code}"),
+                                      subtitle: Text(" Creé le : ${DateFormat("yyyy/MM/dd").format(bc[index].createdAt)} "),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
