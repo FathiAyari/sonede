@@ -92,7 +92,7 @@ class AuthServices {
     var userFromStorage = GetStorage().read('user');
     try {
       await auth.signInWithEmailAndPassword(email: userFromStorage['email'], password: password);
-      await user!.updateEmail(email);
+      await user!.verifyBeforeUpdateEmail(email);
       await userCollection.doc(userFromStorage['uid']).update({'email': email});
 
       userFromStorage['email'] = email;

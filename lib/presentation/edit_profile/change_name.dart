@@ -63,8 +63,9 @@ class _EditProfileState extends State<ChangeName> {
                                 await FirebaseFirestore.instance
                                     .collection('users')
                                     .doc(user['uid'])
-                                    .update({'name': nameController.text});
+                                    .update({'name': nameController.text, 'lastName': lastNameController.text});
                                 user['name'] = nameController.text;
+                                user['lastName'] = lastNameController.text;
                                 await GetStorage().write('user', user);
                                 setState(() {
                                   loading = false;
