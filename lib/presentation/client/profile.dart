@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:sonede/presentation/edit_profile/edit_profile.dart';
 import 'package:sonede/presentation/ressources/colors.dart';
 import 'package:sonede/presentation/ressources/dimensions/constants.dart';
 import 'package:sonede/services/AuthServices.dart';
@@ -98,6 +100,25 @@ class _MyProfileState extends State<MyProfile> {
                 Spacer(),
                 Container(
                   width: Constants.screenWidth,
+                  child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      ),
+                      onPressed: () {
+                        Get.to(EditProfile());
+                      },
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        "Paramétrage de profil",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                ),
+                Container(
+                  width: Constants.screenWidth,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
@@ -110,7 +131,7 @@ class _MyProfileState extends State<MyProfile> {
                         "Se déconnecter",
                         style: TextStyle(color: Colors.white),
                       )),
-                )
+                ),
               ],
             ),
           ),
