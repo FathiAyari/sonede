@@ -140,6 +140,15 @@ class _AddInvoiceState extends State<AddInvoice> {
                                       "counterId": widget.counterId,
                                       "urlPdf": imageUpload.split("pdf")[0] + "pdf" + imageUpload.split("pdf")[1],
                                     });
+                                    var notifColl = FirebaseFirestore.instance.collection('notifications');
+
+                                    var notifDoc = notifColl.doc();
+                                    notifDoc.set({
+                                      "userId": widget.userId,
+                                      "content": "Un admin a envoyé la facture de ${trimester} trimestre",
+                                      "date": DateTime.now(),
+                                      "id": notifDoc.id
+                                    });
                                     setState(() {
                                       isLoading = false;
                                     });

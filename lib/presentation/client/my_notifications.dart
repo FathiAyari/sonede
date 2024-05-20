@@ -73,7 +73,7 @@ class _MyNotificationsState extends State<MyNotifications> {
                                     ),
                                     child: ListTile(
                                       title: Text("${bc[index].content}"),
-                                      subtitle: Text(" Creé le : ${DateFormat("yyyy/MM/dd").format(bc[index].date)} "),
+                                      subtitle: Text(" Reçu le : ${DateFormat("yyyy/MM/dd").format(bc[index].date)} "),
                                     ),
                                   ),
                                 ),
