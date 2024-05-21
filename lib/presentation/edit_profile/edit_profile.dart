@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sonede/presentation/edit_profile/change_email.dart';
 import 'package:sonede/presentation/edit_profile/change_name.dart';
 import 'package:sonede/presentation/edit_profile/change_password.dart';
 import 'package:sonede/presentation/ressources/dimensions/constants.dart';
@@ -39,37 +38,6 @@ class _EditProfileState extends State<EditProfile> {
       ),
       body: Column(
         children: [
-          InkWell(
-            onTap: () {
-              Get.to(ChangeEmail());
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(color: Colors.indigo.withOpacity(0.5), borderRadius: BorderRadius.circular(5)),
-                height: Constants.screenHeight * 0.1,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "changer votre mail",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
           InkWell(
             onTap: () {
               Get.to(ChangePassword());
